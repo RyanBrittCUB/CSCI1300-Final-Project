@@ -2,7 +2,7 @@
 #include <string>
 #include <cstdlib> // rand() and srand()
 #include <ctime> // time()
-#include "board.h" // Board header file
+#include "Board.h" // Board header file
 
 // Each of the following defines a macro
 // Essentially nicknames to use instead of the corresponding escape sequence ('\') 
@@ -93,7 +93,9 @@ bool Board::isPlayerOnTile(int player_index, int pos) {
     if (_player_position[player_index] == pos) {
         return true;
     }
+    else{
     return false;
+    }
 }
 
 void Board::displayTile(int player_index, int pos) {
