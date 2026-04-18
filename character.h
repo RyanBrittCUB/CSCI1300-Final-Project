@@ -36,7 +36,7 @@ class Character
     // getters
 
     std::string getName();
-    float getAgilityu();
+    float getAgility();
     float getFocus();
     float getLuck();
 

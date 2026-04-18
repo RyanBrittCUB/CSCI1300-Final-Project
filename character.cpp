@@ -1,6 +1,4 @@
 /* TODO: Initialize character.cpp */
-<<<<<<< HEAD
-/* TODO: Initialize character.cpp */
 
 #include <string>
 #include <iostream>
@@ -96,7 +94,7 @@ void Character::setcharictureFromFileLine(std::string line)
 // getters
 
 string Character::getName()             {return this->name;}
-float Character::getAgilityu()          {return this->agility;}
+float Character::getAgility()           {return this->agility;}
 float Character::getFocus()             {return this->focus;}
 float Character::getLuck()              {return this->luck;}
 string Character::getCharacterString()  {return this -> characterString;}
@@ -104,6 +102,3 @@ string Character::getCharacterString()  {return this -> characterString;}
 // methods
 
 
-=======
-/* TODO: Initialize character.cpp */
->>>>>>> 3f42bcdfd4b23848e2989571065c1885df722e3e
