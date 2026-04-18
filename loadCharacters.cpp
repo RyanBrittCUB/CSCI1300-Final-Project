@@ -8,7 +8,7 @@
 //using namespace std;
 
 
-int loadCharacters(std::string filename, Character (&characters)[10], int max_players)
+int loadCharacters(std::string filename, Character characters[], int max_players)
 {
     
     std::fstream infile;
