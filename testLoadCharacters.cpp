@@ -6,6 +6,8 @@
 #include "character.h"
 #include "loadCharacters.h"
 
+using namespace std;
+
 int main()
 {
     std::string fileName = "characters.txt";
