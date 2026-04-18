@@ -1,7 +1,9 @@
 /* TODO: Write character.h, a header file for the character class */
 
+
 #ifndef CHARACTER_H
 #define CHARACTER_H
+
 
 class Character
 {

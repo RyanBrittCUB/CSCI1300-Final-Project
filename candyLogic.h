@@ -9,8 +9,8 @@ class candyLogic {
 
     public:
 
-        int candyJarSort(Character c, string candies, string targetCandy);
-        string inventoryScrambler(Character c, string inventory);
-        string combineCandies(Character c, string candy1, string candy2);
-        int findGoldenTicket(Character c, string batch, string ticket);
+        int candyJarSort(char c, string candies, string targetCandy);
+        string inventoryScrambler(char c, string inventory);
+        string combineCandies(char c, string candy1, string candy2);
+        int findGoldenTicket(char c, string batch, string ticket);
 };

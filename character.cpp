@@ -1,4 +1,6 @@
 /* TODO: Initialize character.cpp */
+<<<<<<< HEAD
+/* TODO: Initialize character.cpp */
 
 #include <string>
 #include <iostream>
@@ -102,3 +104,6 @@ string Character::getCharacterString()  {return this -> characterString;}
 // methods
 
 
+=======
+/* TODO: Initialize character.cpp */
+>>>>>>> 3f42bcdfd4b23848e2989571065c1885df722e3e
