@@ -12,6 +12,6 @@
 using namespace std;
 
 // Function prototype
-int loadCharacters(string filename, Character characters[], int max_players);
+int loadCharacters(string filename, Character (&characters)[10], int max_players);
 
 #endif
