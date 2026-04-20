@@ -10,50 +10,12 @@ using namespace std;
 // What is '&' and why do we use it? 
 // Note that spacing for & does not matter as long as it is between the type and name
 
+/*
 bool testInitialization(Board & b);
 void runVisualCheck(Board& b);
 bool testMovement(Board &b);
 bool testWinCondition(Board&b);
-
-/* =========================== MAIN =========================== */
-
-// Our test files will have a main but so will gameEngine.cpp
-// We cannot have two main functions in the compile line
-// Refer to the written instructions for how to compile/execute test files
-int main() {
-    srand(time(0));
-
-    // We have four tests to successfully test all public member functions
-
-    // In this test file, we only want to use one board - so we only create one instance
-    // By calling the constructor, this also calls 'initializeBoard'
-    Board mainBoard;
-
-    // Step 1: Initial State
-    if (!testInitialization(mainBoard)) { 
-        // What does it mean to return 1 from the main function?
-        return 1;
-    }
-
-    // Step 2: Visual Check
-    runVisualCheck(mainBoard);
-
-    // Step 3: Movement
-    if (!testMovement(mainBoard)) {
-        return 1;
-    }
-
-    // Step 4: Win Condition
-    if (!testWinCondition(mainBoard)) {
-        return 1;
-    }
-
-    cout << endl << "ALL STEPS PASSED" << endl;
-    
-    return 0;
-}
-
-/* =========================== Initialize Functions =========================== */
+*/
 
 bool testInitialization(Board &b) {
     cout << "TEST ONE" << endl;
@@ -115,3 +77,46 @@ bool testWinCondition(Board &b) {
     cout << "\tFailed." << endl;
     return false;
 }
+
+/* =========================== MAIN =========================== */
+
+
+
+// Our test files will have a main but so will gameEngine.cpp
+// We cannot have two main functions in the compile line
+// Refer to the written instructions for how to compile/execute test files
+int main() {
+    srand(time(0));
+
+    // We have four tests to successfully test all public member functions
+
+    // In this test file, we only want to use one board - so we only create one instance
+    // By calling the constructor, this also calls 'initializeBoard'
+    Board mainBoard;
+
+    // Step 1: Initial State
+    if (!testInitialization(mainBoard)) { 
+        // What does it mean to return 1 from the main function?
+        return 1;
+    }
+
+    // Step 2: Visual Check
+    runVisualCheck(mainBoard);
+
+    // Step 3: Movement
+    if (!testMovement(mainBoard)) {
+        return 1;
+    }
+
+    // Step 4: Win Condition
+    if (!testWinCondition(mainBoard)) {
+        return 1;
+    }
+
+    cout << endl << "ALL STEPS PASSED" << endl;
+    
+    return 0;
+}
+
+/* =========================== Initialize Functions =========================== */
+
