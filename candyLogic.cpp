@@ -34,9 +34,24 @@ string inventoryScrambler(char c, string inventory){
 
 string combineCandies(char c, string candy1, string candy2);
 
+{
+    int candy1length = candy1.length();
+    int candy2length = candy2.length();
+    int outputLength = candy1length + candy2length;
 
+    int candy1Index = 0, candy2Index = 0;
+    string combinedCandies = "";
 
+    for (int i = 0; i < outputLength; i ++)
+    {
+        if (candy1Index > candy1length)         combinedCandies += candy2[i];
+        else if (candy2Index > candy2length)    combinedCandies += candy1[i];
+        else if (candy1Index == candy2Index)   {combinedCandies += candy1[i]; candy1Index ++; }
+        else                                   {combinedCandies += candy2[i]; candy1Index ++; }
+    }
 
+    return combinedCandies;
+}
 
 
 
