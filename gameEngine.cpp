@@ -17,7 +17,7 @@ int main() {
 
     // An instance of the candyLogic class has been added for you here
     // We recommend you check for the tile's color in gameEngine to trigger a call to one of the four functions in candyLogic
-    candyLogic logic;
+    //candyLogic logic;
     
     Character all_characters[10];
 

@@ -1,6 +1,6 @@
 /* TODO: Initialize candyLogic.cpp */
 #include "candyLogic.h"
-#include <bits/stdc++.h>
+#include <algorithm>
 
 
 int candyJarSort(char c, string candies, string targetCandy){
@@ -69,7 +69,7 @@ string combineCandies(char c, string candy1, string candy2) {
 
 int findGoldenTicket(char c, string batch, string ticket){
 
-    int idx;
+    int idx = -1;
     int L=batch.length();
     int lT = ticket.length();
 
@@ -86,7 +86,7 @@ int findGoldenTicket(char c, string batch, string ticket){
 
     for(int i=0; i<L; i++){
         if(batch.substr(i, ticket.length()) == ticket){
-            i=idx;
+            idx=i;
         }
     }
 
