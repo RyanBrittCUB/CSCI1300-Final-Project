@@ -15,7 +15,7 @@ SRCS = \
 board.cpp \
 candyLogic.cpp \
 character.cpp \
-gameEngine.cpp \
+main.cpp \
 loadCharacters.cpp 
 
 # Object files

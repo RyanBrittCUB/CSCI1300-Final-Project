@@ -37,7 +37,7 @@ int main() {
         return -1;
     }
 
-    cout << all_characters[0].getName() << endl;
+    cout << all_characters[2].getName() << endl;
 
     // main Menue:
     cout << endl;
@@ -100,10 +100,11 @@ int main() {
     cout << player2Name << " Please select your character! your options are: " << endl;
     cout << all_characters[0].printCharacterArray(all_characters, 10);
     cout << "enter the number of the character you wish to select: ";
+    cout << "you cannot Choose " << player1CharacterSelection << ", player 1 has already choosen this character." << endl;
     
     string player2CharacterSelection;
     cin >> player2CharacterSelection;
-    while (!(stoi(player1CharacterSelection)>0 && stoi(player2CharacterSelection) < 10)){
+    while (!(stoi(player2CharacterSelection)>0 && stoi(player2CharacterSelection) < 10) or stoi(player2CharacterSelection) == stoi(player1CharacterSelection)){
         cout << "ops... Thats not a valid input! Please enter a number corresponding to one of the characters above (with no spaces): ";
         cin >> player2CharacterSelection;
     }
@@ -153,12 +154,33 @@ int main() {
         // The following code is a short hand way to write a for loop
         // condition ? if true : if false
         string name = (currentPlayer == 0) ? player1Name : player2Name;
+        Character* currentPlayerCharacter = (currentPlayer == 0) ? &player1 : &player2;
 
         cout << "\nIt is " << name << "'s turn!" << endl;
+        char input = '5';
 
-        cout << "Press Enter to roll the candy-die...";
+        do{
+            cout << "What would you like to do?" << endl;
+            cout << "1: review Character status" <<endl;
+            cout << "2: print character's name" <<endl;
+            cout << "3: display the board" << endl;
+            cout << "4: display Path" << endl;
+            cout << "5: move forward" << endl;
 
-        cin.get(); // Recall that .get is a way to retrieve one char from the terminal
+            input = cin.get(); // Recall that .get is a way to retrieve one char from the terminal
+
+            switch (input){
+                case 1: (*currentPlayerCharacter).getCharacterString();
+                case 2: (*currentPlayerCharacter).getName();
+                case 3: gameBoard.displayBoard(); break;
+                case 4: (*currentPlayerCharacter).getPathName(); break;
+                case 5: break;
+                default: break;
+            }
+
+        }while (!(input == 5));
+
+        
 
         // Standard 1-6 dice roll
         int roll = (rand() % 6) + 1;
