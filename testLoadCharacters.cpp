@@ -10,7 +10,7 @@ using namespace std;
 
 int main()
 {
-    std::string fileName = "characters.txt";
+    string fileName = "characters.txt";
     const int test_numberOfPlayers = 10;
     Character characterArray[test_numberOfPlayers];
 
@@ -20,6 +20,7 @@ int main()
 
     for (int i = 0; i < test_numberOfPlayers; i ++){
         cout << characterArray[i].getCharacterString() << endl;
+        cout << characterArray[i].getName() << endl;
     }
 
 }

@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "character.h"
+#include "path.h"
 
 using namespace std;
 
@@ -59,6 +60,15 @@ void Character::setAgility(float _adjility)     {this->agility = _adjility; setC
 void Character::setFocus(float _focus)          {this->focus = _focus;      setCharacterString();}
 void Character::setLuck(float _luck)            {this->luck = _luck;        setCharacterString();}
 void Character::setCharacterString()            {this -> characterString = "name: " + this->name +  ", adjility: " + to_string(this->agility) + ", Focus: " + to_string(this->focus) + ", Luck: " + to_string(this->luck);}
+void Character::setCharacterPath(Path _path){
+    this->characterPath = _path;
+
+    this->agility += _path.agilityBonus;
+    this->focus += _path.focusBonus;
+    this->luck += _path.luckBonus;
+    
+    setCharacterString();
+}
 
 void Character::setcharictureFromFileLine(std::string line)
 {
@@ -93,12 +103,21 @@ void Character::setcharictureFromFileLine(std::string line)
 
 // getters
 
-string Character::getName()             {return this->name;}
-float Character::getAgility()           {return this->agility;}
-float Character::getFocus()             {return this->focus;}
-float Character::getLuck()              {return this->luck;}
+string Character::getName()             {return this -> name;}
+float Character::getAgility()           {return this -> agility;}
+float Character::getFocus()             {return this -> focus;}
+float Character::getLuck()              {return this -> luck;}
 string Character::getCharacterString()  {return this -> characterString;}
+string Character::getPathName()         {return this -> characterPath.pathName;}
+Path Character::getPath()               {return this -> characterPath;}
 
 // methods
 
-
+std::string Character::printCharacterArray(Character characters[], int numberOfCharacters)
+{
+    string outputString = "";
+    for (int i = 0; i < numberOfCharacters; i++){
+        outputString += (to_string(i) + ": " + characters[i].getCharacterString() + "\n");
+    }
+    return outputString;
+}

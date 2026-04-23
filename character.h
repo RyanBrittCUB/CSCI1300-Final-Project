@@ -1,5 +1,6 @@
 /* TODO: Write character.h, a header file for the character class */
 
+#include "path.h"
 
 #ifndef CHARACTER_H
 #define CHARACTER_H
@@ -10,8 +11,10 @@ class Character
     private:
         std::string name;
         float agility, focus, luck;
+        Path characterPath;
 
         std::string characterString;
+        
 
     public:
 
@@ -29,6 +32,7 @@ class Character
     void setAgility(float _adjility);
     void setFocus(float _focus);
     void setLuck(float _luck);
+    void setCharacterPath(Path _path);
     void setCharacterString();
 
     void setcharictureFromFileLine(std::string line);
@@ -39,10 +43,13 @@ class Character
     float getAgility();
     float getFocus();
     float getLuck();
+    Path getPath();
+    std::string getPathName();
 
     // opperators
 
     std::string getCharacterString();
+    std::string printCharacterArray(Character characters[], int numberOfCharacters);
 
 };
 
