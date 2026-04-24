@@ -9,6 +9,8 @@
 
 using namespace std;
 
+//Compile code g++ -std=c++17 -Wall -Werror -Wpedantic gameEngine.cpp candyLogic.cpp board.cpp character.cpp loadCharacters.cpp -o game.exe
+
 int main() {
     srand(time(0));
 
@@ -41,17 +43,17 @@ int main() {
 
     // main Menue:
     cout << endl;
-    cout << "//////////////////////////////////////////////////////////////////////////////////////////////" << endl;
-    cout << "//                              __                                           __             //" << endl;
-    cout << "//           /     /\\    |\\   | |   \\   \\   /     |          /\\     |\\   |  |   \\           //" << endl;
-    cout << "//          |     /  \\   | \\  | |    |   \\ /      |         /  \\    | \\  |  |    |          //" << endl;
-    cout << "//          |    /____\\  |  \\ | |    |    |       |        /____\\   |  \\ |  |    |          //" << endl;
-    cout << "//           \\  /      \\ |   \\| |__ /     |       |_____  /      \\  |   \\|  |__ /           //" << endl;
-    cout << "//                                                                                          //" << endl;
-    cout << "//////////////////////////////////////////////////////////////////////////////////////////////" << endl;
+    cout << "///////////////////////////////////////////////////////////////////////////////////////////////////" << endl;
+    cout << "//                                                                                              //" << endl;
+    cout << "//       //\\\\  /\\\\        //\\\\  |||||||| ||   ||  ||        //\\\\        //\\\\      //  ||\\\\      //" << endl;
+    cout << "//      //  \\\\/  \\\\      //  \\\\    ||    ||___||  ||       //  \\\\      //  \\\\    //   ||  \\\\    //"<< endl;
+    cout << "//     //         \\\\    //====\\\\   ||    ||   ||  ||      //====\\\\    //    \\\\  //    ||  //    //" << endl;
+    cout << "//    //           \\\\  //      \\\\  ||    ||   ||  |||||  //      \\\\  //      \\\\//     ||//      //" << endl;
+    cout << "//                                                                                             //" << endl;
+    cout << "////////////////////////////////////////////////////////////////////////////////////////////////" << endl;
 
     cout << endl << endl << endl;
-    cout << "welcome to the game of candyland!" << endl;
+    cout << "welcome to the game of MandyLand!" << endl;
     cout << "This is a text based two player game." << endl;
     cout << "To start, each player will choose their character and some atributes." << endl;
 
@@ -68,16 +70,16 @@ int main() {
     
     string player1CharacterSelection;
     cin >> player1CharacterSelection;
-    while (!(stoi(player1CharacterSelection)>0 && stoi(player1CharacterSelection) < 10)){
+    while (!(stoi(player1CharacterSelection)>=0 && stoi(player1CharacterSelection) < 10)){
         cout << "ops... Thats not a valid input! Please enter a number corresponding to one of the characters above (with no spaces): ";
         cin >> player1CharacterSelection;
     }
     Character player1 = all_characters[stoi(player1CharacterSelection)];
 
     cout << player1Name << " enter a number for the path you would like to choose! Your options are:" << endl;
-    cout << " - The sugar rush path: this gives +10 agility, +5 luck, and -10 focus" << endl;
-    cout << "- The brainfreeze path: this gives -10 agility, -5 luck, and +15 focus" << endl;
-    cout << "type A for the sugar rush path and B for the brainfreeze path: ";
+    cout << " - The abstract path: this gives +10 agility, +5 luck, and -10 focus" << endl;
+    cout << "- The applied path: this gives -10 agility, -5 luck, and +15 focus" << endl;
+    cout << "type A for the abstract path and B for the applied path: ";
 
     string player1PathType;
     cin >> player1PathType;
@@ -85,8 +87,8 @@ int main() {
         cout << "ops, that's not a valid input. please enter 'A' or 'B' ";
         cin >> player1PathType;
     }
-    if (player1PathType == "A") player1.setCharacterPath(SUGAR_RUSH_PATH);
-    else                        player1.setCharacterPath(FROST_BITE_PATH);
+    if (player1PathType == "A") player1.setCharacterPath(ABSTRACT_PATH);
+    else                        player1.setCharacterPath(APPLIED_PATH);
 
     cout << "player 1 has choosen player " << player1.getName() << "and the " << player1.getPathName() << endl;
 
@@ -110,9 +112,9 @@ int main() {
     Character player2 = all_characters[stoi(player1CharacterSelection)];
 
     cout << player2Name << " enter a number for the path you would like to choose! Your options are:" << endl;
-    cout << " - The sugar rush path: this gives +10 agility, +5 luck, and -10 focus" << endl;
-    cout << "- The brainfreeze path: this gives -10 agility, -5 luck, and +15 focus" << endl;
-    cout << "type A for the sugar rush path and B for the brainfreeze path: ";
+    cout << " - The abstract path: this gives +10 agility, +5 luck, and -10 focus" << endl;
+    cout << "- The applied path: this gives -10 agility, -5 luck, and +15 focus" << endl;
+    cout << "type A for the abstract path and B for the applied path: ";
 
     string player2PathType;
     cin >> player2PathType;
@@ -120,8 +122,8 @@ int main() {
         cout << "ops, that's not a valid input. please enter 'A' or 'B' ";
         cin >> player2PathType;
     }
-    if (player2PathType == "A") player2.setCharacterPath(SUGAR_RUSH_PATH);
-    else                        player2.setCharacterPath(FROST_BITE_PATH);
+    if (player2PathType == "A") player2.setCharacterPath(ABSTRACT_PATH);
+    else                        player2.setCharacterPath(APPLIED_PATH);
 
     cout << "player 1 has choosen player " << player2.getName() << "and the " << player2.getPathName() << endl;
 
@@ -146,7 +148,7 @@ int main() {
     bool gameOver = false;
     int currentPlayer = 0; // 0 for P1, 1 for P2
 
-    cout << "--- Welcome to the CandyLand board game! ---" << endl;
+    cout << "--- Welcome to the MathLand board game! ---" << endl;
     gameBoard.displayBoard();
 
     while (!gameOver) {
@@ -156,7 +158,7 @@ int main() {
 
         cout << "\nIt is " << name << "'s turn!" << endl;
 
-        cout << "Press Enter to roll the candy-die...";
+        cout << "Press Enter to roll the probablity theory-die...";
 
         cin.get(); // Recall that .get is a way to retrieve one char from the terminal
 
@@ -174,7 +176,7 @@ int main() {
         gameBoard.displayBoard();
 
         if (gameOver) {
-            cout << "Hooray! " << name << " reached the Candy Castle!" << endl;
+            cout << "Hooray! " << name << " reached the End of the Semester!" << endl;
         } else {
             // Switch turns
             currentPlayer = (currentPlayer == 0) ? 1 : 0;

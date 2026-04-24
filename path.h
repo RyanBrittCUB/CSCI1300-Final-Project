@@ -1,7 +1,7 @@
 #include <string>
 
-#define SUGAR_RUSH_PATH Path{10, 5, -10, "Sugar Rush Path"}
-#define FROST_BITE_PATH Path{-10, -5, 15, "Frostbite Path"}
+#define ABSTRACT_PATH Path{10, 5, -10, "Abstract Path"}
+#define APPLIED_PATH Path{-10, -5, 15, "Applied Path"}
 
 #ifndef PATH_H
 #define PATH_H
