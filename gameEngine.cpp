@@ -11,6 +11,8 @@
 
 using namespace std;
 
+//Compile code g++ -std=c++17 -Wall -Werror -Wpedantic gameEngine.cpp candyLogic.cpp board.cpp character.cpp loadCharacters.cpp -o game.exe
+
 int main() {
     srand(time(0));
 
@@ -52,13 +54,7 @@ int main() {
     cout << "////////////////////////////////////////////////////////////////////////////////////////////////" << endl;
 
     cout << endl << endl << endl;
-    cout << "welcome to the game of Mathland!" << endl;
-    cout << "This is a text based two player game." << endl;
-    cout << "To start, each player will choose their character and some atributes." << endl;
-
-    // player 1 start menue:
-cout << endl << endl << endl;
-    cout << "welcome to the game of MandyLand!" << endl;
+    cout << "welcome to the game of candyland!" << endl;
     cout << "This is a text based two player game." << endl;
     cout << "To start, each player will choose their character and some atributes." << endl;
 
@@ -153,7 +149,7 @@ cout << endl << endl << endl;
     bool gameOver = false;
     int currentPlayer = 0; // 0 for P1, 1 for P2
 
-    cout << "--- Welcome to the CandyLand board game! ---" << endl;
+    cout << "--- Welcome to the MathLand board game! ---" << endl;
     gameBoard.displayBoard();
 
     while (!gameOver) {
@@ -163,34 +159,10 @@ cout << endl << endl << endl;
         Character* currentPlayerCharacter = (currentPlayer == 0) ? &player1 : &player2;
 
         cout << "\nIt is " << name << "'s turn!" << endl;
-        char input = '5';
-        int charInt = 0;
 
-        do{
-            cout << "What would you like to do?" << endl;
-            cout << "1: review Character status" <<endl;
-            cout << "2: print character's name" <<endl;
-            cout << "3: display the board" << endl;
-            cout << "4: display Path" << endl;
-            cout << "5: move forward" << endl;
+        cout << "Press Enter to roll the candy-die...";
 
-            cin >> input; // Recall that .get is a way to retrieve one char from the terminal
-            cout << "your Input is: " << input << endl;
-            charInt = 0 + input;
-
-            switch (charInt){
-                case 1: (*currentPlayerCharacter).getCharacterString();
-                case 2: (*currentPlayerCharacter).getName();
-                case 3: gameBoard.displayBoard(); break;
-                case 4: (*currentPlayerCharacter).getPathName(); break;
-                case 5: break;
-                case 6: return -1;
-                default: break;
-            }
-
-        }while (!(charInt == 5));
-
-        
+        cin.get(); // Recall that .get is a way to retrieve one char from the terminal
 
         // Standard 1-6 dice roll
         int roll = (rand() % 6) + 1;
@@ -206,7 +178,7 @@ cout << endl << endl << endl;
         gameBoard.displayBoard();
 
         if (gameOver) {
-            cout << "Hooray! " << name << " reached the Candy Castle!" << endl;
+            cout << "Hooray! " << name << " reached the End of the Semester!" << endl;
         } else {
             // Switch turns
             currentPlayer = (currentPlayer == 0) ? 1 : 0;

@@ -1,11 +1,11 @@
 Number,Name,Agility,Focus,Luck
-1,Musketeer,3,9,2
-2,Sourpatch Kid,9,8,1
-3,Captain Caramel,4,5,8
-4,Lady Licorice,8,1,3
-5,Sir Slushie,7,7,5
-6,Gummy Governor,9,2,8
-7,Count Chocula,0,1,6
-8,Mistress Minty,8,3,4
-9,Pop Snap,9,2,6
-10,Peppermint,5,6,3
+1,Leonhard Euler,3,9,2
+2,George Gabriel Stokes,9,8,1
+3,Augustin-Louis Cauchy,4,5,8
+4,Pythagoras,8,1,3
+5,Gottfried Wilhelm Leibniz,7,7,5
+6,Emmy Noether,9,2,8
+7,Carl Friedrich Gauss,0,1,6
+8,Bernhard Riemann,8,3,4
+9,Joseph Fourier,9,2,6
+10,Pierre-Simon Laplace,5,6,3
