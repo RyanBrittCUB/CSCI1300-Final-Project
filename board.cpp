@@ -54,7 +54,7 @@ void Board::initializeTiles(int player_index, Path lanePath) {
 
         // Hard-coded target of 30 green tiles
         // Probablisitic method to spread out the green tiles randomly
-        else if (green_count < 30 && (rand() % (total_tiles - i) < 30 - green_count)) {
+        else if (green_count < lanePath.tileModifier && (rand() % (total_tiles - i) < lanePath.tileModifier - green_count)) {
             tile.color = 'G';
             green_count++;
         }
