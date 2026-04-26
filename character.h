@@ -13,8 +13,10 @@ class Character
         float agility, focus, luck;
         Path characterPath;
 
+        int points;
+
         std::string characterString;
-        
+        std::string secretWord;
 
     public:
 
@@ -34,6 +36,8 @@ class Character
     void setLuck(float _luck);
     void setCharacterPath(Path _path);
     void setCharacterString();
+    void setPoints(int _points);
+    void setSecretWord(std::string _secretWord);
 
     void setcharictureFromFileLine(std::string line);
 
@@ -43,13 +47,16 @@ class Character
     float getAgility();
     float getFocus();
     float getLuck();
+    int getPoints();
     Path getPath();
     std::string getPathName();
+    std::string getSecretWord();
 
     // opperators
 
     std::string getCharacterString();
     std::string printCharacterArray(Character characters[], int numberOfCharacters);
+    void gainPoints(int newPoints);
 
 };
 

@@ -28,4 +28,5 @@ class Board {
         void displayBoard();
         bool movePlayer(int player_index);
         int getPlayerPosition(int player_index) const ;
+        Tile getPlayerPositionTile(int player_index);
 };

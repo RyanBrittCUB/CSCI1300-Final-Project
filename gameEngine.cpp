@@ -44,14 +44,14 @@ int main() {
 
     // main Menue:
     cout << endl;
-    cout << "///////////////////////////////////////////////////////////////////////////////////////////////////" << endl;
+    cout << "//////////////////////////////////////////////////////////////////////////////////////////////////" << endl;
     cout << "//                                                                                              //" << endl;
     cout << "//       //\\\\  /\\\\        //\\\\  |||||||| ||   ||  ||        //\\\\        //\\\\      //  ||\\\\      //" << endl;
     cout << "//      //  \\\\/  \\\\      //  \\\\    ||    ||___||  ||       //  \\\\      //  \\\\    //   ||  \\\\    //"<< endl;
     cout << "//     //         \\\\    //====\\\\   ||    ||   ||  ||      //====\\\\    //    \\\\  //    ||  //    //" << endl;
     cout << "//    //           \\\\  //      \\\\  ||    ||   ||  |||||  //      \\\\  //      \\\\//     ||//      //" << endl;
-    cout << "//                                                                                             //" << endl;
-    cout << "////////////////////////////////////////////////////////////////////////////////////////////////" << endl;
+    cout << "//                                                                                              //" << endl;
+    cout << "//////////////////////////////////////////////////////////////////////////////////////////////////" << endl;
 
     cout << endl << endl << endl;
     cout << "welcome to the game of candyland!" << endl;
@@ -91,6 +91,11 @@ int main() {
     if (player1PathType == "A") player1.setCharacterPath(ABSTRACT_PATH);
     else                        player1.setCharacterPath(APPLIED_PATH);
 
+    string Player1SecretWord = "";
+    cout << player1Name << "enter a secret word :";
+    cin >> Player1SecretWord;
+    player1.setSecretWord(Player1SecretWord);
+
     cout << "player 1 has choosen player " << player1.getName() << "and the " << player1.getPathName() << endl;
 
     cout << endl;
@@ -126,6 +131,11 @@ int main() {
     if (player2PathType == "A") player2.setCharacterPath(ABSTRACT_PATH);
     else                        player2.setCharacterPath(APPLIED_PATH);
 
+    string Player2SecretWord = "";
+    cout << player2Name << "enter a secret word :";
+    cin >> Player2SecretWord;
+    player1.setSecretWord(Player2SecretWord);
+
     cout << "player 1 has choosen player " << player2.getName() << "and the " << player2.getPathName() << endl;
 
     cout << endl;
@@ -157,13 +167,53 @@ int main() {
         // condition ? if true : if false
         string name = (currentPlayer == 0) ? player1Name : player2Name;
         Character* currentPlayerCharacter = (currentPlayer == 0) ? &player1 : &player2;
+        Character* otherPlayerCharacter = (currentPlayer == 0) ? &player2 : &player1;
 
         cout << "\nIt is " << name << "'s turn!" << endl;
 
-        cout << "Press Enter to roll the candy-die...";
+        char input = '5';
+        int charInt = 0;
+        
+        while (!(charInt == '5'))
+        {
+            cout << "What would you like to do?" << endl;
+            cout << "1: review Character status" <<endl;
+            cout << "2: print character's name" <<endl;
+            cout << "3: display the board" << endl;
+            cout << "4: display Path" << endl;
+            cout << "5: move forward" << endl;
+            cout << "6: display Points" << endl;
 
-        cin.get(); // Recall that .get is a way to retrieve one char from the terminal
+            cin >> input; // Recall that .get is a way to retrieve one char from the terminal
+            cout << "your Input is: " << input << endl;
+            charInt = 0 + input;
 
+            switch (charInt)
+            {
+                case '1': 
+                    cout << (*currentPlayerCharacter).getCharacterString() << endl;
+                    break;
+                case '2': 
+                    cout << (*currentPlayerCharacter).getName() << endl;
+                    break;
+                case '3': 
+                    gameBoard.displayBoard(); 
+                    break;
+                case '4': 
+                    cout << (*currentPlayerCharacter).getPathName() << endl; 
+                    break;
+                case '5': 
+                    break;
+                case '6': 
+                    cout << player1Name << " has " << player1.getPoints() << " points" << endl;
+                    cout << player2Name << " has " << player2.getPoints() << " points" << endl;
+                    break;
+                case '7': return -1;
+                default: 
+                    cout << "default ran " << endl;
+                    break;
+            }
+        }
         // Standard 1-6 dice roll
         int roll = (rand() % 6) + 1;
 
@@ -177,13 +227,100 @@ int main() {
 
         gameBoard.displayBoard();
 
+        //candyLogic functions:
+
+        Tile currentTile = gameBoard.getPlayerPositionTile(currentPlayer);
+        candyLogic tileLogic;
+        switch (currentTile.color)
+        {
+            case 'B': // Blue: candy jar sort -> slove Differential equation
+                cout << "you landed on a Blue tile! If your lucky you will be able to sourt a candy jar!" << endl;
+                cout << "your Luck is " << (*currentPlayerCharacter).getLuck() << endl;
+
+                if (rand() % 100 < (*currentPlayerCharacter).getLuck()){
+                    cout << "Congrats! your luck is high enough! " << endl;
+                    string jarString = "taffy,sour,sweet,chocolate,mike,ike,taffy,taffy";
+                    string target = "taffy";
+                    char c = 'a';
+                    cout << "you sort the jar with the string " << jarString << endl;
+                    cout << "you correctly find the index of " << target << "to be " << tileLogic.candyJarSort(c, jarString, target) << endl;
+                    cout << "because you successfully sorted the candy jar, you gain 100 points!" << endl;
+                    (*currentPlayerCharacter).gainPoints(10);
+                } else {
+                    cout << "you were not lucky enough this time. you do not gain any points." << endl;
+                }
+                break;
+            case 'P': // Pink: Inventory scramble
+                cout << "uh oh you landed on a pink scramble. your focus will be tested and you may loose some points" << endl;
+
+                if (rand() % 100 > (*currentPlayerCharacter).getFocus())
+                {
+                    string inventory = (*currentPlayerCharacter).getSecretWord();
+                    char c2='a';
+                    string scramble= tileLogic.inventoryScrambler(c2, inventory);
+                    cout << "looks like you werent focused enough. The string " << inventory << "was scrambled into " << scramble << "and you loose 100 points" << endl;
+                    (*currentPlayerCharacter).gainPoints(-100);
+                } else {
+                    cout << "your luck is unmatched! you survive this inventory scrambler!" << endl;
+                }
+                break;
+            case 'T': // Brown: Find Golden ticket
+                cout << "You landed on a Brown Tile. you get to look for the golden ticket! this takes a lot of luck!" << endl;
+                if ((rand() % 100) -50 < (*currentPlayerCharacter).getLuck())
+                {
+                    char c4='a';
+                    string goldenString= "MatchToTheBestIndex";
+                    string goldenTarget= "best";
+                    int PWRBAL= tileLogic.findGoldenTicket(c4, goldenString, goldenTarget);
+                    cout << "congradulations! you found the golden target " << goldenTarget << " in the string" << goldenString << "at index " << PWRBAL;
+                    cout << "you win 500 points!" << endl;
+                    (*currentPlayerCharacter).gainPoints(500);
+                } else {
+                    cout << "ooooh, looks like you are not lucky enough this time. better luck next time!" << endl;
+                }
+
+                break;
+            case 'R': // Red: Combine Candies
+                cout << "You landed on a red Tile! you get to steel some points from your competition!" << endl;
+                cout << "if your ajile enough!" << endl;
+                if (rand() % 100 < (*currentPlayerCharacter).getAgility()){
+                    string secretWord1 = (*currentPlayerCharacter).getSecretWord();
+                    string secretWord2 = (*otherPlayerCharacter).getSecretWord();
+                    char c3='a';
+                    string wombo_combo= tileLogic.combineCandies(c3, secretWord1, secretWord2);
+                    cout << "you successfully combine your secret phrase " << secretWord1 << " and your competitions secret phrase " << secretWord2 << " and combine them into your new phrase: " << wombo_combo << endl;
+                    cout << "You sucessfully steal 750 points from the competition!" << endl;
+                    (*currentPlayerCharacter).gainPoints(750);
+                    (*otherPlayerCharacter).gainPoints(-750);
+                } else {
+                    cout << "looks like you were not ajile enough. Better luck next time!" << endl;
+                }
+
+                break;
+            case 'U': // Purple
+
+                break;
+            default:
+                cout << "You landed on a green tile. Nothing happens." << endl;
+                break;
+        }
+
         if (gameOver) {
             cout << "Hooray! " << name << " reached the End of the Semester!" << endl;
+            (*currentPlayerCharacter).gainPoints(1000);
         } else {
             // Switch turns
             currentPlayer = (currentPlayer == 0) ? 1 : 0;
         }
     }
+
+    cout << "final scors:" << endl;
+    cout << player1Name << "recieved " << player1.getPoints() << " Points!" << endl;
+    cout << player2Name << "recieved " << player2.getPoints() << " Points!" << endl;
+
+    if       (player1.getPoints() < player2.getPoints())  cout << player1Name << "wins!" << endl;
+    else if  (player1.getPoints() == player2.getPoints()) cout << "it is a tie!" << endl;
+    else                                                  cout << player2Name << "wins!" << endl;
 
     return 0;
 }

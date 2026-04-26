@@ -179,3 +179,9 @@ int Board::getPlayerPosition(int player_index) const {
     }
     return -1;
 }
+
+Tile Board::getPlayerPositionTile(int player_index)
+{
+    int position = getPlayerPosition(player_index);
+    return _tiles[player_index][position];
+}
