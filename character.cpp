@@ -13,6 +13,7 @@ Character::Character(){
     this->agility = 0;
     this->focus = 0;
     this->luck = 0;
+    this->points = 0;
 
     setCharacterString();
 }
@@ -29,6 +30,7 @@ Character::Character(std::string _name, float _adjility){
     this->agility = _adjility;
     this->focus = 0;
     this->luck = 0;
+    this->points = 0;
 
     setCharacterString();
 }
@@ -37,6 +39,7 @@ Character::Character(string _name, float _adjility, float _focus){
     this->agility = _adjility;
     this->focus = _focus;
     this->luck = 0;
+    this->points = 0;
 
     setCharacterString();
 }
@@ -45,6 +48,7 @@ Character::Character(string _name, float _adjility, float _focus, float _luck){
     this->agility = _adjility;
     this->focus = _focus;
     this->luck = _luck;
+    this->points = 0;
 
     setCharacterString();
 
@@ -56,10 +60,12 @@ void Character::setName(string _name){
     this-> name = _name;
     setCharacterString();
 }
-void Character::setAgility(float _adjility)     {this->agility = _adjility; setCharacterString();}
-void Character::setFocus(float _focus)          {this->focus = _focus;      setCharacterString();}
-void Character::setLuck(float _luck)            {this->luck = _luck;        setCharacterString();}
-void Character::setCharacterString()            {this -> characterString = "name: " + this->name +  ", adjility: " + to_string(this->agility) + ", Focus: " + to_string(this->focus) + ", Luck: " + to_string(this->luck);}
+void Character::setAgility(float _adjility)         {this -> agility = _adjility; setCharacterString();}
+void Character::setFocus(float _focus)              {this -> focus = _focus;      setCharacterString();}
+void Character::setLuck(float _luck)                {this -> luck = _luck;        setCharacterString();}
+void Character::setCharacterString()                {this -> characterString = "name: " + this->name +  ", adjility: " + to_string(this->agility) + ", Focus: " + to_string(this->focus) + ", Luck: " + to_string(this->luck);}
+void Character::setPoints(int _points)              {this -> points = _points;}
+void Character::setSecretWord(string _secretWord)   {this -> secretWord = _secretWord;}
 void Character::setCharacterPath(Path _path){
     this->characterPath = _path;
 
@@ -104,12 +110,14 @@ void Character::setcharictureFromFileLine(std::string line)
 // getters
 
 string Character::getName()             {return this -> name;}
-float Character::getAgility()           {return this -> agility;}
-float Character::getFocus()             {return this -> focus;}
-float Character::getLuck()              {return this -> luck;}
+float  Character::getAgility()          {return this -> agility;}
+float  Character::getFocus()            {return this -> focus;}
+float  Character::getLuck()             {return this -> luck;}
+int    Character::getPoints()           {return this -> points;}
 string Character::getCharacterString()  {return this -> characterString;}
 string Character::getPathName()         {return this -> characterPath.pathName;}
-Path Character::getPath()               {return this -> characterPath;}
+Path   Character::getPath()             {return this -> characterPath;}
+string Character::getSecretWord()       {return this -> secretWord;}
 
 // methods
 
@@ -121,3 +129,5 @@ std::string Character::printCharacterArray(Character characters[], int numberOfC
     }
     return outputString;
 }
+
+void Character::gainPoints(int newPoints) {this->points += newPoints;}

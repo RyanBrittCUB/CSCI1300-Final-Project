@@ -3,6 +3,7 @@
 #include <cstdlib> // rand() and srand()
 #include <ctime> // time()
 #include "board.h" // Board header file
+#include "path.h"
 
 // Each of the following defines a macro
 // Essentially nicknames to use instead of the corresponding escape sequence ('\') 
@@ -20,19 +21,19 @@ using namespace std;
 
 /* =========================== Constructor =========================== */
 
-Board::Board() {
+Board::Board(Path paths[2]) {
     // Initialize player's position
     for (int i = 0; i < _MAX_PLAYERS; i++) {
         _player_position[i] = 0;
     }
 
     // Fill both lanes
-    initializeBoard();
+    initializeBoard(paths);
 }
 
 /* =========================== Private Member Functions =========================== */
 
-void Board::initializeTiles(int player_index) {
+void Board::initializeTiles(int player_index, Path lanePath) {
     Tile tile;
 
     int green_count = 0; // Board is default green
@@ -53,7 +54,7 @@ void Board::initializeTiles(int player_index) {
 
         // Hard-coded target of 30 green tiles
         // Probablisitic method to spread out the green tiles randomly
-        else if (green_count < 30 && (rand() % (total_tiles - i) < 30 - green_count)) {
+        else if (green_count < lanePath.tileModifier && (rand() % (total_tiles - i) < lanePath.tileModifier - green_count)) {
             tile.color = 'G';
             green_count++;
         }
@@ -135,10 +136,10 @@ void Board::displayTile(int player_index, int pos) {
 
 /* =========================== Public Member Functions =========================== */
 
-void Board::initializeBoard() {
+void Board::initializeBoard(Path paths[2]) {
     for (int i = 0; i < 2; i++) {
         // This ensures each lane (or each player) has a unique tile distribution
-        initializeTiles(i);
+        initializeTiles(i, paths[i]);
     }
 }
 
@@ -177,4 +178,10 @@ int Board::getPlayerPosition(int player_index) const {
         return _player_position[player_index];
     }
     return -1;
+}
+
+Tile Board::getPlayerPositionTile(int player_index)
+{
+    int position = getPlayerPosition(player_index);
+    return _tiles[player_index][position];
 }
