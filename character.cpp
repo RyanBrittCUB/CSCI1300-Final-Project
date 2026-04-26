@@ -102,9 +102,8 @@ void Character::setcharictureFromFileLine(std::string line)
     //cout << "test" << endl;
     //cout << "name: " << stringName <<endl;
     //cout << "/// Adjility: " << stringAjility <<endl;
-    //cout << "/// focus: " << stringFocus <<endl;
-    //cout << "/// luck: " << stringLuck << endl;
-
+    //cout << "/// Focus: " << stringFocus <<endl;
+    //cout << "/// Luck: " << stringLuck << endl;
 }
 
 // getters

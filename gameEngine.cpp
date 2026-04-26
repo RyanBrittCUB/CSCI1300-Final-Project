@@ -54,7 +54,7 @@ int main() {
     cout << "//////////////////////////////////////////////////////////////////////////////////////////////////" << endl;
 
     cout << endl << endl << endl;
-    cout << "welcome to the game of candyland!" << endl;
+    cout << "welcome to the game of mathland!" << endl;
     cout << "This is a text based two player game." << endl;
     cout << "To start, each player will choose their character and some atributes." << endl;
 
@@ -92,11 +92,11 @@ int main() {
     else                        player1.setCharacterPath(APPLIED_PATH);
 
     string Player1SecretWord = "";
-    cout << player1Name << "enter a secret word :";
+    cout << player1Name << " enter a secret word :";
     cin >> Player1SecretWord;
     player1.setSecretWord(Player1SecretWord);
 
-    cout << "player 1 has choosen player " << player1.getName() << "and the " << player1.getPathName() << endl;
+    cout << "player 1 has choosen player " << player1.getName() << " and the " << player1.getPathName() << endl;
 
     cout << endl;
     // player 2 selection menue:
@@ -106,12 +106,13 @@ int main() {
     cin >> player2Name;
 
     cout << player2Name << " Please select your character! your options are: " << endl;
-    cout << all_characters[0].printCharacterArray(all_characters, 10);
+    //cout << all_characters[0].printCharacterArray(all_characters, 10);
+    for (int i = 0; i < 10; i ++) cout << i << ": " << all_characters[i].getName() << endl;
     cout << "enter the number of the character you wish to select: ";
     
     string player2CharacterSelection;
     cin >> player2CharacterSelection;
-    while (!(stoi(player1CharacterSelection)>0 && stoi(player2CharacterSelection) < 10)){
+    while (!(stoi(player2CharacterSelection)>0 && stoi(player2CharacterSelection) < 10)){
         cout << "ops... Thats not a valid input! Please enter a number corresponding to one of the characters above (with no spaces): ";
         cin >> player2CharacterSelection;
     }
@@ -132,11 +133,11 @@ int main() {
     else                        player2.setCharacterPath(APPLIED_PATH);
 
     string Player2SecretWord = "";
-    cout << player2Name << "enter a secret word :";
+    cout << player2Name << " enter a secret word :";
     cin >> Player2SecretWord;
     player1.setSecretWord(Player2SecretWord);
 
-    cout << "player 1 has choosen player " << player2.getName() << "and the " << player2.getPathName() << endl;
+    cout << "player 1 has choosen player " << player2.getName() << " and the " << player2.getPathName() << endl;
 
     cout << endl;
 
@@ -223,16 +224,6 @@ int main() {
         for (int i = 0; i < roll; i++) {
             gameOver = gameBoard.movePlayer(currentPlayer);
             if (gameOver) break;
-            /*else if (If orange run mathematical expression sort){
-                give string of mathematical expressions
-                find Laplace
-                if number correct +5 points
-                }
-            else if(tile is blue){
-                
-            }
-            */
-            
         }
 
         gameBoard.displayBoard();
@@ -244,17 +235,17 @@ int main() {
         switch (currentTile.color)
         {
             case 'B': // Blue: candy jar sort -> slove Differential equation
-                cout << "you landed on a Blue tile! If your lucky you will be able to sourt a candy jar!" << endl;
+                cout << "you landed on a Blue tile! If your lucky you will be able to sort a Math Exam!" << endl;
                 cout << "your Luck is " << (*currentPlayerCharacter).getLuck() << endl;
 
-                if (rand() % 100 < (*currentPlayerCharacter).getLuck()){
+                if (rand() % 100 < 10*(*currentPlayerCharacter).getLuck()){
                     cout << "Congrats! your luck is high enough! " << endl;
-                    string jarString = "taffy,sour,sweet,chocolate,mike,ike,taffy,taffy";
-                    string target = "taffy";
+                    string jarString = "Derivative,Theorem,Addition,Integral,Multiplication,Subtraction,Derivative,Derivative";
+                    string target = "Derivative";
                     char c = 'a';
-                    cout << "you sort the jar with the string " << jarString << endl;
-                    cout << "you correctly find the index of " << target << "to be " << tileLogic.candyJarSort(c, jarString, target) << endl;
-                    cout << "because you successfully sorted the candy jar, you gain 100 points!" << endl;
+                    cout << "you sort the expression with the string " << jarString << endl;
+                    cout << "you correctly find the index of " << target << " to be " << tileLogic.candyJarSort(c, jarString, target) << endl;
+                    cout << "because you successfully sorted the Exam, you gain 100 points!" << endl;
                     (*currentPlayerCharacter).gainPoints(10);
                 } else {
                     cout << "you were not lucky enough this time. you do not gain any points." << endl;
@@ -263,7 +254,7 @@ int main() {
             case 'P': // Pink: Inventory scramble
                 cout << "uh oh you landed on a pink scramble. your focus will be tested and you may loose some points" << endl;
 
-                if (rand() % 100 > (*currentPlayerCharacter).getFocus())
+                if (rand() % 100 > 10*(*currentPlayerCharacter).getFocus())
                 {
                     string inventory = (*currentPlayerCharacter).getSecretWord();
                     char c2='a';
@@ -275,15 +266,15 @@ int main() {
                 }
                 break;
             case 'T': // Brown: Find Golden ticket
-                cout << "You landed on a Brown Tile. you get to look for the golden ticket! this takes a lot of luck!" << endl;
-                if ((rand() % 100) -50 < (*currentPlayerCharacter).getLuck())
+                cout << "You landed on a Brown Tile. you get to look for the Solution to the ODE! this takes a lot of luck!" << endl;
+                if ((rand() % 100) -50 < 10*(*currentPlayerCharacter).getLuck())
                 {
                     char c4='a';
-                    string goldenString= "MatchToTheBestIndex";
-                    string goldenTarget= "best";
+                    string goldenString= "TheSchroedingerEquationIsAPartialDifferentialEquationThatModelsThePositionOfCertainSubatomicParticlesAsAProbabilityCurve";
+                    string goldenTarget= "Models";
                     int PWRBAL= tileLogic.findGoldenTicket(c4, goldenString, goldenTarget);
-                    cout << "congradulations! you found the golden target " << goldenTarget << " in the string" << goldenString << "at index " << PWRBAL;
-                    cout << "you win 500 points!" << endl;
+                    cout << "Congradulations! you found the Solution to the ODE " << goldenTarget << " in the string" << goldenString << " at index " << PWRBAL;
+                    cout << " you win 500 points!" << endl;
                     (*currentPlayerCharacter).gainPoints(500);
                 } else {
                     cout << "ooooh, looks like you are not lucky enough this time. better luck next time!" << endl;
@@ -293,7 +284,7 @@ int main() {
             case 'R': // Red: Combine Candies
                 cout << "You landed on a red Tile! you get to steel some points from your competition!" << endl;
                 cout << "if your ajile enough!" << endl;
-                if (rand() % 100 < (*currentPlayerCharacter).getAgility()){
+                if (rand() % 100 < 10*(*currentPlayerCharacter).getAgility()){
                     string secretWord1 = (*currentPlayerCharacter).getSecretWord();
                     string secretWord2 = (*otherPlayerCharacter).getSecretWord();
                     char c3='a';
@@ -308,6 +299,32 @@ int main() {
 
                 break;
             case 'U': // Purple
+            cout << "you landed on a Purple tile! If your lucky you will be able to earn the amount of points in an equation!" << endl;
+                cout << "your Luck is " << (*currentPlayerCharacter).getLuck() << endl;
+
+                if (rand() % 100 < 10*(*currentPlayerCharacter).getLuck()){
+                    cout << "Congrats! your luck is high enough!" << endl;
+                    int Var1= rand() % 20;
+                    int Var2= rand() % 20;
+                    int Var3=rand() % 20;
+                    double Sol= Var1/Var2 + Var3;
+                    double playerSol;
+                    cout << "Your problem is :" << Var1 <<"/"<<Var2<<"+"<<Var3<< endl;
+                    cout<< "Enter your answer here!:" << endl;
+                    cin >> playerSol;
+
+                    if(playerSol==Sol){
+                        cout<<"That's Correct! You Gained " << playerSol<< " Points!" << endl;
+                    (*currentPlayerCharacter).gainPoints(Sol);
+                    }
+                    else{
+                        cout << "Whoops! That is incorrect! You lost " << playerSol << " Points!" << endl;
+                        (*currentPlayerCharacter).gainPoints(-playerSol);
+                    }
+                } else {
+                    cout << "you were not lucky enough this time. you do not gain or lose any points." << endl;
+                }
+                break;
 
                 break;
             default:
@@ -324,9 +341,18 @@ int main() {
         }
     }
 
-    cout << "final scors:" << endl;
-    cout << player1Name << "recieved " << player1.getPoints() << " Points!" << endl;
-    cout << player2Name << "recieved " << player2.getPoints() << " Points!" << endl;
+    cout << "Final Scores:" << endl; //Sorting Algorythm
+    if(player1.getPoints()>player2.getPoints()){
+    cout << player1Name << " recieved " << player1.getPoints() << " Points!" << endl;
+    cout << player2Name << " recieved " << player2.getPoints() << " Points!" << endl;
+    }
+    else if(player1.getPoints()<player2.getPoints()){
+    cout << player2Name << " recieved " << player2.getPoints() << " Points!" << endl;
+    cout << player1Name << " recieved " << player1.getPoints() << " Points!" << endl;
+    }
+    else{
+        cout << "Both Players recieved " << player1.getPoints() << " Points" << endl;
+    }
 
     if       (player1.getPoints() < player2.getPoints())  cout << player1Name << "wins!" << endl;
     else if  (player1.getPoints() == player2.getPoints()) cout << "it is a tie!" << endl;
