@@ -171,6 +171,16 @@ int main() {
         for (int i = 0; i < roll; i++) {
             gameOver = gameBoard.movePlayer(currentPlayer);
             if (gameOver) break;
+            /*else if (If orange run mathematical expression sort){
+                give string of mathematical expressions
+                find Laplace
+                if number correct +5 points
+                }
+            else if(tile is blue){
+                
+            }
+            */
+            
         }
 
         gameBoard.displayBoard();
